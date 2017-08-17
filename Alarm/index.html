@@ -1,0 +1,63 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>WebAPP</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="utf-8">
+    <link rel="stylesheet" href="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.css">
+    
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://code.jquery.com/mobile/1.4.5/jquery.mobile-1.4.5.min.js"></script>
+    <script src='./view.js'></script>
+    <script src='./db.js'></script>
+    <script src='./event.js'></script>
+    <script> var curIdx; </script>
+    </head>
+    <body>        
+	<div id="Pop1" data-role="page">
+		<div data-role="header">
+			<h1> List </h1>
+			<a class="go ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-right" href='#Set1?idx=null'></a>
+		</div>
+		<!--Pop1contents-->
+		<ul id="List" data-role="listview" data-split-icon="minus" data-split-theme="c" data-inset="true">
+		
+		</ul>
+		<div data-role="popup" id="delete"  style="max-width:200px; padding: 2px;">
+			<h4>Delete an Element?</h4>
+			<a id="popupYesBtn" href="#" data-rel="back" data-del-id="" class="ui-shadow ui-btn ui-btn-inline" style="margin:5%;"> Yes </a>
+			<a href="#" data-rel="back" class="ui-shadow ui-btn ui-btn-inline" style="margin:10%;"> No </a>
+		</div>
+	
+	</div><!--EndofPop1-->
+	<div id="Set1" data-role="page">
+		<div data-role="header">
+			<a href="#Pop1" data-rel="back" class="ui-btn ui-btn-left"> cancel </a>
+			<h1> Edit </h1>
+			<a id="save" href="#Pop1" data-rel="back" class="ui-btn ui-btn-right"> save </a>
+		</div>
+		
+		<div class ="ui-field-contain" style="width:100%; height:100%;">
+			<div style="padding:1em;">
+
+									<select id="hour">
+						
+					</select>
+					<script> appendOption("hour",0,23,null); </script>	
+					<select id="min">
+						
+					</select>
+					<script> appendOption("min",0,59,null); </script>	
+					<select id="repeat" multiple="multiple" data-native-menu='false'>
+						
+					</select>
+					<script> appendOption("repeat",null,7,['Mon','Tue','Wed','Thu','Fri','Sat','Sun']); </script>	
+					<select id="onoff" data-role="slider" data-mini="true" class="ui-slider-switch">
+						<option value="0" selected='selected'> off </option>
+						<option value="1" > on </option>
+					</select>	
+<!--Set1contents-->
+			</div>
+		</div>
+	</div></body>
+</html>
