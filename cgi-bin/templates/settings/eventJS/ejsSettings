@@ -1,0 +1,26 @@
+	$("#UID").on("pagebeforeshow",function(event){
+		event.stopPropagation();
+		var idx = getParameterByName(event.target.baseURI,'idx');
+		db.get({idx:idx});
+		return;
+	});
+	function getdata(id){
+		if( $("#"+id).attr("multiple") !== null ){
+			var temp=[];
+			$("#"+id+" option:selected").each(function(i,selected){
+				temp.push( $(selected).val() );
+			});
+			return temp.toString();
+		}else{
+			return $("#"+id+" option:selected").val();
+		}
+	};
+	$("#save").on('click',function(){
+		var temp={};
+		temp['idx'] = (curIdx == null) ? Math.random().toString(36).substring(2,4)+Math.random().toString(36).substring(2,4):curIdx;
+		//SETSEL
+		
+		//SETTGL
+		
+		db.put(temp);
+	});

@@ -1,0 +1,5 @@
+	$(".slider").slider();
+	$("#slider_"+id).bind('change',function(e){
+		var tmp_id = e.target.id.split("_");
+		db.put({idx:tmp_id[1],LUMNAME:$(this).val(),tgl:true});
+	});

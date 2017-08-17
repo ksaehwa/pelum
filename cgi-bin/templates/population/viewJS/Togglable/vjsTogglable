@@ -1,0 +1,2 @@
+li += flipToggle({id:obj.idx,tgl:obj.LUMNAME});
+

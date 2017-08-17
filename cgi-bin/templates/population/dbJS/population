@@ -1,0 +1,2 @@
+					appendList(cursor.value);
+					bindListEvent(cursor.value.idx);

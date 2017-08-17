@@ -1,0 +1,4 @@
+					<select id="LUMNAME" multiple="multiple" data-native-menu='false'>
+						
+					</select>
+					<script> appendOption("LUMNAME",PIMFIRST,PIMLAST,PIMMULTI); </script>

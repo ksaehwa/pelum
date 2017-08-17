@@ -1,0 +1,1 @@
+[{"id":"BaseCanvas_Set1_Sel1","Name":"hour","Values":"0:23","DefValue":"","MulCheck":""},{"id":"BaseCanvas_Set1_Sel2","Name":"min","Values":"0:59","DefValue":"","MulCheck":""},{"id":"BaseCanvas_Set1_Sel3","Name":"repeat","Values":"Mon,Tue,Wed,Thu,Fri,Sat,Sun","DefValue":"","MulCheck":"1"},{"id":"BaseCanvas_Set1_Tgl2","Name":"onoff","Values":"on,off","DefValue":"","MulCheck":""}]

@@ -1,0 +1,14 @@
+pelum is an effective embedded SW development methodology for UI centric embedded systems. Our tool consists of a model editor and a code generator. But, we provide model editor code in this repo.
+
+model editor
+
+model editor is composed of the three managers.
+
+File Manager: Provides loading and saving files. And delivers each file of a specific type to a proper manager by classifying files.
+LUM Manager : Create and load LUM elements on screen. Then, bind the event of LUM.
+PIM Manager : Manages the value of the data model that is needed to create the database schema.
+proto ver.1
+
+can draw LUM (Logical UI Model)
+can connect each model
+can load and download model files.

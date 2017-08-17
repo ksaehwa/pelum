@@ -1,0 +1,16 @@
+settingOption('LUMNAME',obj.LUMNAME);
+
+function appendOption(id,start,end,arr){
+	if( $("#"+id).children().length < end ){
+		if(arr === null){
+			for( var i=start ; i <= end ; i+=1){
+				$("#"+id).append("<option value='"+i+"'>"+i+"</option>");	
+			}
+		}
+		else{
+			for( var i in arr ){
+				$("#"+id).append("<option value='"+arr[i]+"'>"+arr[i]+"</option>");	
+			}
+		}
+	}
+}

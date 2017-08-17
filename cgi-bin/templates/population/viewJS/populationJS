@@ -1,0 +1,46 @@
+function getParameterByName(url,name) {
+	var regex = new RegExp("[\\?&]" + name + "=([^&#]*)"),
+		results = regex.exec(url);
+	return results === null ? "" : decodeURIComponent(results[1].replace(/\+/g, " "));
+}
+function flipToggle(args){
+	var str = "<div class='SliderDiv'><select id='slider_"+ args.id + "' class='slider' data-role='slider' data-mini='true'>";
+	if( Number(args.tgl)){
+		str +="<option value='0'>off</option>"
+			+ "<option value='1' selected='selected'>on</option>";
+	}else{
+		str +="<option value='0' selected='selected'>off</option>"
+			+ "<option value='1'>on</option>";
+	}
+	return str + "</select></div>";
+}
+
+function instance(name,val){
+	var str="";
+	if($("#"+name).attr('multiple') === undefined  ){
+			str += "<font size='4' face='verdana'>"+ val + "</font><font size='1' face='verdana'>"+name+"</font>\n"; 	
+	}else{
+		str += "<br><font size='1'>"+ val.toString()+"</font>\n";
+	}
+	return str;
+}
+
+function appendList(obj){
+	var li = "<li id='"+obj.idx+"'> <a class='go' href='#TO?idx="+obj.idx+"'>";
+		li += "<div class='InstanceDiv'>";
+		//UIDInstances
+		li += "</div>";
+
+		//UIDTogglable
+		li	+= "</a>"
+			+"<a id='delete_"+obj.idx+"' href='#delete' class='deleteBtn' data-rel='popup' data-position-to='window'> del </a></li>";
+	
+	$("#LUMNAME").append(li);
+	$("#LUMNAME").listview().listview( "refresh" );
+};
+
+function removeItem(id){
+	db.deleteItem(id);
+	$('#LUMNAME').find("#"+id).remove();
+	$("#LUMNAME").listview().listview( "refresh" );
+}

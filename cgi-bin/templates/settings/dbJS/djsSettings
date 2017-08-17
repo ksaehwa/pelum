@@ -1,0 +1,10 @@
+				if(e.target.result !== undefined){
+					curIdx = e.target.result.idx;
+					prepareSettingPage(e.target.result);					
+				}else{
+					curIdx = null;
+					var temp = {};
+					//DBSEL
+					//DBTGL
+					prepareSettingPage(temp);
+				}

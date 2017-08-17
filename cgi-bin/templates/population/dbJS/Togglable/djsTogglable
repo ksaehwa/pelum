@@ -1,0 +1,5 @@
+				if( obj.hasOwnProperty('tgl')){
+					tmp.LUMNAME = obj.LUMNAME;
+					req = objStore.put(tmp);	
+					return;
+				}

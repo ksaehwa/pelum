@@ -1,0 +1,71 @@
+<!DOCTYPE>
+<html>
+	<head>
+		<title>PELUM</title>
+		<script src="http://code.jquery.com/jquery-1.10.2.js"></script>
+		<link rel='stylesheet'href="./css/home.css">
+	</head>
+	<body>
+		<div class='home-head'>
+			<img src='./img/gate.png' style='border:1px;'>
+			<script>
+				$(".home-head > img").click(function(e){
+					location.reload();
+				});
+			</script>
+			<div class='home-head-menu'>
+				<ul>
+					<li> 
+						<a id="wt" href="http://localhost/index.html">Web Tool</a>
+						<script>
+							/*$("#wt").click(function(e){
+								var $root = $("body");
+								$(".home-body > object").attr('data','http://localhost/index.html');
+								$root.stop(true).animate({scrollTop:110},'slow');
+							});*/
+						</script>
+					</li>
+					<li>
+						<a href="#">Reference Model</a>
+						<ul>
+							<li>
+								<a href="#">Alarm</a>
+							</li>
+							<li>
+								<a href="#">TBD</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Reference Implementation</a>
+						<ul>
+							<li>
+								<a href="#">Alarm</a>
+							</li>
+							<li>
+								<a href="#">TBD</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						<a href="#">Demo Video</a>
+						<ul>
+							<li>
+								<a href="#">All of the followings</a>
+							</li>
+							<li>
+								<a href="#">TBD</a>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</div>
+		</div>
+		<div class='home-side'>
+		</div>
+		<div class='home-body'>
+			<object/>
+		</div>
+		
+	</body>
+</html>

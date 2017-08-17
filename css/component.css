@@ -1,0 +1,48 @@
+/* Component css */
+.Component{
+	width: auto;
+	min-width:120px;
+	height: auto;
+	position:absolute;
+	outline: 1px solid black;
+}
+.Container{
+	min-height: 40px;
+}
+.Presentation{
+	z-index: 90;
+	min-height:25px;
+	max-height:25px;
+}
+.ComponentHead{
+	width: 100%;
+	height:25px;
+	outline: 1px solid black;
+}
+.ComponentHead span{
+	margin-top: 1px;
+	display:inline-block;
+	height:20px;
+	position: absolute;
+}
+.ComponentHead span:first-child{
+	left:0px;
+}
+.ComponentHead span:last-child{
+	cursor: pointer;
+	right:3px;
+}
+.ComponentHead span:nth-child(2){
+	left: 21px;
+	height:20px;
+	width: 60%;
+}
+.ComponentHead span > input{
+	width:100%;
+}
+.Component > .Canvas{
+	
+	width: 100%;
+	height:96.5%;
+	position:absolute;
+}

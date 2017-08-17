@@ -1,0 +1,7 @@
+function bindListEvent(id){
+	//bLETGL
+	$("#delete_"+id).bind('click',function(e){
+		var tmp_id = e.target.id.split('_');
+		$("#popupYesBtn").attr("data-del-id",tmp_id[1]);
+	});
+}	

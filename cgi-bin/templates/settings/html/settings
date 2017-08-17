@@ -1,0 +1,14 @@
+	<div id="UID" data-role="page">
+		<div data-role="header">
+			<a href="#LUMFROM" data-rel="back" class="ui-btn ui-btn-left"> cancel </a>
+			<h1> Edit </h1>
+			<a id="save" href="#LUMFROM" data-rel="back" class="ui-btn ui-btn-right"> save </a>
+		</div>
+		
+		<div class ="ui-field-contain" style="width:100%; height:100%;">
+			<div style="padding:1em;">
+
+				<!--UIDcontents-->
+			</div>
+		</div>
+	</div>

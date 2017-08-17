@@ -1,0 +1,14 @@
+	db.initialize();
+	$("#LUMNAME").empty();
+	db.readAll();
+	
+	//Page1Event
+	$("#UID").on('pagebeforeshow',function(){
+		$("#LUMNAME").empty();
+		db.readAll();
+		return ;
+	});
+	$("#popupYesBtn").click(function(){
+		// remove a element on list.
+		removeItem($(this).attr("data-del-id"));
+	});	

@@ -1,0 +1,4 @@
+					<select id="LUMNAME" data-role="slider" data-mini="true" class="ui-slider-switch">
+						<option value="0" selected='selected'> PIMFALSE </option>
+						<option value="1" > PIMTRUE </option>
+					</select>

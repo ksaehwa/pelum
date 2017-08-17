@@ -1,0 +1,16 @@
+	<div id="UID" data-role="page">
+		<div data-role="header">
+			<h1> LUMNAME </h1>
+			<a class="go ui-btn ui-corner-all ui-icon-plus ui-btn-icon-notext ui-btn-right" href='#LUMTO?idx=null'></a>
+		</div>
+		<!--UIDcontents-->
+		<ul id="LUMNAME" data-role="listview" data-split-icon="minus" data-split-theme="c" data-inset="true">
+		
+		</ul>
+		<div data-role="popup" id="delete"  style="max-width:200px; padding: 2px;">
+			<h4>Delete an Element?</h4>
+			<a id="popupYesBtn" href="#" data-rel="back" data-del-id="" class="ui-shadow ui-btn ui-btn-inline" style="margin:5%;"> Yes </a>
+			<a href="#" data-rel="back" class="ui-shadow ui-btn ui-btn-inline" style="margin:10%;"> No </a>
+		</div>
+	
+	</div><!--EndofUID-->

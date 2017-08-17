@@ -1,0 +1,20 @@
+function settingOption(id,value){
+	var select = $("#"+id);
+	if(select.attr("data-role") =='slider'){
+		select.val((value==1)?'1':'0').slider("refresh");	
+		return;		
+	}else if( select.attr("multiple")=='multiple'){
+		select.val(value.split(',')).attr("selected",true);
+		select.selectmenu();
+		select.selectmenu('refresh');
+	}else{
+		select.val(value).attr("selected",true);
+		select.selectmenu();
+		select.selectmenu('refresh');
+	}
+}
+function prepareSettingPage(obj){
+	//pSPSEL
+	
+	//pSPTGL
+}
