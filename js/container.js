@@ -1,4 +1,4 @@
-﻿var current_id, id_in_progress, jsInstance, is_file_loading=false;
+var current_id, id_in_progress, jsInstance, is_file_loading=false;
 jsPlumb.ready(function(){
 	jsInstance = jsPlumb.getInstance({
 		Endpoint : [ "Dot", {radius : 2	} ],
@@ -400,7 +400,6 @@ var model = new LUMManager();
 
 var FileManager = (function(){
 	var me;
-	var filesystem = null;
 	function FM_(){
 		this.evtName=[];
 		me = this;
@@ -495,31 +494,8 @@ var FileManager = (function(){
 		obj.attr('href',url);
 		obj.attr('download', name);
 	}
-	function writeLocalLum(text) {
-		var fs = require('fs');
-		fs.writeFile('./results.txt', text, function(err) {
-		  if(err) throw err;
-		  console.log('File write completed');
-		});
-	}
-	FM_.prototype.FileDown = function( ){
-		var blob=[],
-			url,
-			lum_xml = $("#BaseCanvas").html(),
-			pim_xml = pim.arr,
-			ldl = $("#LumDownLink"),
-			pdl = $("#PimDownLink");
-		if(!window.URL && !window.Blob){
-			console.log("none.");
-			return false;
-		}
-		writeLocalLum(lum_xml);
-		//blob[1]= new Blob([JSON.stringify(pim_xml)], {type:'text/json'});
-		//createDownObj(ldl,blob[0],'Lum');
-		//createDownObj(pdl,blob[1],'Pim.json');
-	};
 	
-	FM_.prototype.FileDown1 = function( ){
+	FM_.prototype.FileDown = function( ){
 		var blob=[],
 			url,
 			lum_xml = $("#BaseCanvas").html(),
@@ -536,6 +512,7 @@ var FileManager = (function(){
 		createDownObj(ldl,blob[0],'Lum');
 		createDownObj(pdl,blob[1],'Pim.json');
 	};
+	
 	return FM_;
 }());
 var fmanager = new FileManager();
