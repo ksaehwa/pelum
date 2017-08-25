@@ -1,4 +1,4 @@
-ï»¿var current_id, id_in_progress, jsInstance, is_file_loading=false;
+var current_id, id_in_progress, jsInstance, is_file_loading=false;
 jsPlumb.ready(function(){
 	jsInstance = jsPlumb.getInstance({
 		Endpoint : [ "Dot", {radius : 2	} ],
@@ -75,7 +75,7 @@ jsPlumb.ready(function(){
 			to_div.attr('data-from',from_attr);
 			
 		}
-		// ì´ë²¤íŠ¸ ì´ë¦„ì„ input valì— ì €ì¥í•˜ê¸°.
+		// ÀÌº¥Æ® ÀÌ¸§À» input val¿¡ ÀúÀåÇÏ±â.
 		$("._jsPlumb_Overlay").change(function(e){
 			//get target id
 			var tid = $("#"+e.target.id);
@@ -105,17 +105,40 @@ var PIMManager = (function(){
 //		// this.arr[id];
 //	};
 	PM_.prototype.saveURL = function(id,value){
-		this.openURL[id] = {'id':id,'URL':value};
+		//this.openURL[id] = {'id':id,'URL':value};  // jaehwan add start 2017-08-08
+		var tempURL = this.find(id);
+		console.log('tempURL: ');
+		console.log(tempURL);
+		tempURL.URL = value;
+		this.openURL.push(tempURL);
+		console.log('openURL: ');
+		console.log(this.openURL);
+		return
 	};
 	PM_.prototype.getURL = function(id){
-		return this.openURL[id];
+		var tempObj = this.find(id);
+		if (tempObj) {
+			return tempObj;
+		} else {
+			pim.addURL(id);
+			return this.find(id);
+		}
 	};
+	PM_.prototype.addURL = function(id){
+		var tempObj = {'id':id,'URL':""};
+		this.arr.push(tempObj);
+		this.openURL.push(tempObj);
+		return 1;
+	};
+	//jaehwan add end 2017-08-08
+	
+	
 	/* ksaehwa comment on 2017-07-21 There was a misuses on arrays and objects. 
 	 * Refer to the following from https://www.w3schools.com/js/js_arrays.asp 
 	 * 	 * "WARNING !!
 If you use named indexes, JavaScript will redefine the array to a standard object.
 After that, some array methods and properties will produce incorrect results."
-	* The previous add() and find() regarded variable "arr" as object and not array. 
+	* The previous add() and find() regarded var "arr" as object and not array. 
 	*/
 	PM_.prototype.add = function(id){
 		//this.arr[id] = {'id':id,'Name':"",'Values':"", 'DefValue':"", 'MulCheck':""	}; // commented by ksaehwa 2017-07-20
@@ -169,7 +192,7 @@ After that, some array methods and properties will produce incorrect results."
 				break;				
 			case 'MulCheck':
 				temp_obj.MulCheck = value;
-				break;
+				break; 
 			}
 		}else{
 			console.log("Error: "+id);
@@ -243,11 +266,19 @@ var LUMManager = (function(){
 			case -1:
 				Values.attr('disabled',true);
 			case 0:
-				if(temp_obj=pim.getURL(current_Target_id)){
+				/*if(temp_obj=pim.getURL(current_Target_id)){
 					Values.val(temp_obj.URL);
-				}
+				}*/
+				// jaehwan replaced with 2017-08-04 start
+				temp_obj=pim.getURL(current_Target_id);
+				console.log('pop_obj: ');
+				console.log(temp_obj);
+				Values.val(temp_obj.URL);
+				DefValue.val( temp_obj.DefValue );
+				Values.attr('disabled',false);
 				DefValue.attr('disabled',true);
 				MulCheck.attr('disabled',true);
+				// jaehwan replaced with 2017-08-04 end
 				break;
 			case 1:
 				/* replaced by ksaehwa 2017-07-20 
@@ -262,6 +293,8 @@ var LUMManager = (function(){
 				} */
 				// ksaehwa replaced with 2017-07-20 start 
 				temp_obj = pim.get(current_Target_id); // get() is added by ksaehwa 2017-07-20
+				console.log('set_obj: ');
+				console.log(temp_obj);
 				Values.val( temp_obj.Values);
 				DefValue.val( temp_obj.DefValue );
 				//console.log('check temp_obj.MulCheck='+temp_obj.MulCheck+" id="+id);
@@ -347,7 +380,7 @@ var LUMManager = (function(){
 		});
 		
 		$(".Component").click(function(e){
-			//ì¤‘ì²©ëœ divì˜ event í•¸ë“¤ë§ì˜ ì „íŒŒë¥¼ ë§‰ëŠ”ë‹¤.
+			//ÁßÃ¸µÈ divÀÇ event ÇÚµé¸µÀÇ ÀüÆÄ¸¦ ¸·´Â´Ù.
 			e.stopPropagation();
 			check(e.currentTarget.id);
 			return;
@@ -414,7 +447,7 @@ var FileManager = (function(){
 		if(window.Worker){ //
 			//myWorker = new Worker("http://localhost/js/worker.js");// ksaehwa commented 2017-07-20
 			myWorker = new Worker("js/worker.js"); // ksaehwa replaced 2017-07-20
-			//worker ê°€ ì¼ì„ ìˆ˜í–‰í•´ì•¼í•¨. 
+			//worker °¡ ÀÏÀ» ¼öÇàÇØ¾ßÇÔ. 
 			for( i=0 ; i<files.length; i+=1 ){
 				// post message file object to 'worker.js'
 				myWorker.postMessage([files[i],files[i].type]);
