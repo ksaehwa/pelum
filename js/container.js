@@ -1,4 +1,4 @@
-﻿var current_id, id_in_progress, jsInstance, is_file_loading=false;
+var current_id, id_in_progress, jsInstance, is_file_loading=false;
 jsPlumb.ready(function(){
 	jsInstance = jsPlumb.getInstance({
 		Endpoint : [ "Dot", {radius : 2	} ],
@@ -115,12 +115,13 @@ var PIMManager = (function(){
 	 * 	 * "WARNING !!
 If you use named indexes, JavaScript will redefine the array to a standard object.
 After that, some array methods and properties will produce incorrect results."
-	* The previous add() and find() regarded variable "arr" as object and not array. 
+	* The previous add() and find() regarded var "arr" as object and not array. 
 	*/
 	PM_.prototype.add = function(id){
 		//this.arr[id] = {'id':id,'Name':"",'Values':"", 'DefValue':"", 'MulCheck':""	}; // commented by ksaehwa 2017-07-20
 		// ksaehwa add start 2017-07-21
-		var tempObj = {'id':id,'Name':"",'Values':"", 'DefValue':"", 'MulCheck':"false"}; // ksaehwa 2017-07-21
+		//var tempObj = {'id':id,'Name':"",'Values':"", 'DefValue':"", 'MulCheck':"false"}; // ksaehwa 2017-07-21
+		var tempObj = {'id':id,'Name':"",'Values':"", 'DefValue':"", 'MulCheck':""}; // replaced 'MulCheck' by kkrul 2017-07-31
 		this.arr.push(tempObj);
 		// ksaehwa add end 2017-07-21
 		return 1;
@@ -265,12 +266,12 @@ var LUMManager = (function(){
 				Values.val( temp_obj.Values);
 				DefValue.val( temp_obj.DefValue );
 				//console.log('check temp_obj.MulCheck='+temp_obj.MulCheck+" id="+id);
-				if (temp_obj.MulCheck == 'true') {
-					MulCheck.checked = true;
+				if (temp_obj.MulCheck == 'True') {//replaced by kkrul(temp_obj.MulCheck == 'true'->temp_obj.MulCheck == 'True')
+					MulCheck.checked = "True";//replaced by kkrul(true->True)
 					//console.log('after mulcheck true setting');
 				}
 				else {
-					MulCheck.checked = false;
+					MulCheck.checked = "";//replaced by kkrul(true->"")
 					//console.log('after mulcheck false setting');
 				}
 				// ksaehwa replaced with 2017-07-20 end
@@ -420,7 +421,6 @@ var FileManager = (function(){
 				myWorker.postMessage([files[i],files[i].type]);
 				// then, append e.data.result(lum file) to '#BaseCanvas'.
 				myWorker.onmessage = function(e){
-					
 					if(e.data.type == "text/xml"){
 						console.log('Loading LUM file...');
 						base.append( e.data.result );
@@ -490,6 +490,7 @@ var FileManager = (function(){
 		var url;
 		window.URL.revokeObjectURL(url);
 		url = window.URL.createObjectURL(data);
+		console.log(url);
 		obj.attr('href',url);
 		obj.attr('download', name);
 	}
@@ -508,10 +509,10 @@ var FileManager = (function(){
 		
 		blob[0]= new Blob([lum_xml], {type:'text/xml'});
 		blob[1]= new Blob([JSON.stringify(pim_xml)], {type:'text/json'});
-		
 		createDownObj(ldl,blob[0],'Lum');
 		createDownObj(pdl,blob[1],'Pim.json');
 	};
+	
 	return FM_;
 }());
 var fmanager = new FileManager();

@@ -1,6 +1,4 @@
-<html>
-<head>
-<meta charset="utf-8">
+<html><head><meta charset="utf-8">
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css"> 
 <link rel="stylesheet" href="./css/drawingBox.css">
 <link rel="stylesheet" href="./css/component.css">
@@ -9,30 +7,23 @@
 <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
 <script src="./js/jquery.jsPlumb-1.6.2-min.js"></script>
 <script src="./js/container.js"></script>
-
 <script>	
 $(function(){
-	$("#notice").dialog({
-		width: 350
-	});
+	$("#notice").dialog({width: 350});
 	var iWidth = window.innerWidth-210;
 	$(".DrawingBox").css('width',iWidth.toString());	
 	window.onresize = function(event){
 		var iw = window.innerWidth-210;
 		$(".DrawingBox").css('width',iw.toString());			
 	};	
-	$(window).mouseover(function(e){
-		current_id = e.target.id;
-	});
+	$(window).mouseover(function(e){current_id = e.target.id;});
 	$('.Values').change(function(){
-		var temp_arr, //temp_arr_length, //commented by ksaehwa 2017-07-20
+		var temp_arr,temp_arr_length,
 			vo = $('.Values');
-		
 		temp_arr = id_in_progress.split('_');
-	    //console.log("Values temp_arr="+temp_arr);
+		// console.log("Values temp_arr="+temp_arr);
 		//temp_arr_length = temp_arr.length; //commented by ksaehwa 2017-07-20
 		/* org version by kibong --> replaced by ksaehwa 2017/07/20
-		// ksaehwa: 2017-07-24: Fundamentally, temp_arr_length - 1 should be temp_arr_length - "2" 
 		if( temp_arr[temp_arr_length - 1 ].substring(0,3) === "Set"){
 			pim.update(id_in_progress,'Values',$(this).val());
 			
@@ -46,7 +37,7 @@ $(function(){
 		}else if(temp_arr[1].substring(0,3) === "Pop"){
 			pim.saveURL(id_in_progress, $(this).val());
 		}		
-		// ksaehwa 2017-07-20 end
+		// ksaehwa 2017-07-20 en
 	});
 	$(".DrawingBoxHead > span").draggable({
 		cursor:"move",
@@ -73,7 +64,6 @@ $(function(){
 		stop: function(e){
 			var temp_model,
 				o = $("#" + current_id).offset();
-			console.log(o);
 			if( o ){
 				temp_model = model.getCode( $(this).index() );
 				$("#" + current_id).append(temp_model.code);
@@ -89,9 +79,7 @@ $(function(){
 	$(".DrawingBoxHead > span:nth-child(12)").click(function(e){
 		var d={l:$("#BaseCanvas").html(),p:''},
 			temp=[];
-		for(var i in pim.openURL){
-			temp.push(pim.openURL[i]);
-		}
+		for(var i in pim.openURL){temp.push(pim.openURL[i]);}
 		d.pim = JSON.stringify(temp);
 		console.log(d.pim);
 		// if(pim.arr.length === undefined){
@@ -105,7 +93,7 @@ $(function(){
 		//if(confirm('would you like to generate?')){ // ksaehwa replaced 2017-07-21
 			$.ajax({
 				type:"GET",
-				url: "./cgi-bin/CodeGenerator.py"
+				url: "cgi-bin/CodeGenerator.py"
 			}).done(function(o,e){
 				console.log("generate web-app, done.");
 				window.open("./mwa/index.html");
@@ -115,32 +103,62 @@ $(function(){
 	});
 	
 });
-
-
-</script>
-<style>
-	
-</style>
-</head>
-
+</script></head>
 <body>
 		<div class='home-head'>
 		<img src='./img/gate.png' style='border:1px;'>
 		<script>
 			$(".home-head > img").click(function(e){
-				location.href ="http://localhost/home.html";
+				location.href ="http://220.67.124.12";// http://localhost->http://220.67.124.12 replaced by kkrul
 			});
+			function alarm(e){
+				base = $("#BaseCanvas");
+				base.append('<div id="BaseCanvas_Pop1" class="Component Container ui-resizable ui-droppable" name="List" data-from="" data-to="BaseCanvas_Set1" style="left: 216px; top: 153px; height: 212px; width: 178px;">	<div class="ComponentHead">	<span><img src="./img/img_Pop.jpg"></span>	<span><input id="name_BaseCanvas_Pop1" type="text"></span>	<span><img id="del_BaseCanvas_Pop1" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div id="BaseCanvas_Pop1_Ins1" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="hour" data-from="" data-to="" style="left: 26px; top: 41px;">	<div class="ComponentHead">	<span><img src="./img/img_Ins.jpg"></span>	<span><input id="name_BaseCanvas_Pop1_Ins1" type="text"></span>	<span><img id="del_BaseCanvas_Pop1_Ins1" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div><div id="BaseCanvas_Pop1_Ins2" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="min" data-from="" data-to="" style="left: 28px; top: 75px;">	<div class="ComponentHead">	<span><img src="./img/img_Ins.jpg"></span>	<span><input id="name_BaseCanvas_Pop1_Ins2" type="text"></span>	<span><img id="del_BaseCanvas_Pop1_Ins2" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div><div id="BaseCanvas_Pop1_Ins3" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="repeat" data-from="" data-to="" style="left: 28px; top: 105px;">	<div class="ComponentHead">	<span><img src="./img/img_Ins.jpg"></span>	<span><input id="name_BaseCanvas_Pop1_Ins3" type="text"></span>	<span><img id="del_BaseCanvas_Pop1_Ins3" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div><div id="BaseCanvas_Pop1_Tgl1" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="onoff" data-from="" data-to="" style="left: 27px; top: 139px;">	<div class="ComponentHead">	<span><img src="./img/img_Tgl.jpg"></span>	<span><input id="name_BaseCanvas_Pop1_Tgl1" type="text"></span>	<span><img id="del_BaseCanvas_Pop1_Tgl1" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div></div><div class="_jsPlumb_endpoint ui-draggable ui-draggable-handle ui-droppable endpointDrag _jsPlumb_endpoint_connected _jsPlumb_endpoint_anchor_" dragid="jsPlumb_2_79" elid="BaseCanvas_Pop1" style="position: absolute; height: 12px; width: 12px; left: 388px; top: 253px; visibility: visible;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 236px; top: 200.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 238px; top: 234.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 238px; top: 264.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 237px; top: 298.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div id="BaseCanvas_Set1" class="Component Container ui-resizable ui-draggable ui-draggable-handle ui-droppable _jsPlumb_endpoint_anchor_" name="Setting" data-from="BaseCanvas_Pop1" data-to="" style="left: 632px; top: 152px; height: 222px; width: 200px;">	<div class="ComponentHead">	<span><img src="./img/img_Set.jpg"></span>	<span><input id="name_BaseCanvas_Set1" type="text"></span>	<span><img id="del_BaseCanvas_Set1" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div><div id="BaseCanvas_Set1_Sel1" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="hour" data-from="" data-to="" style="left: 34px; top: 40px;">	<div class="ComponentHead">	<span><img src="./img/img_Sel.jpg"></span>	<span><input id="name_BaseCanvas_Set1_Sel1" type="text"></span>	<span><img id="del_BaseCanvas_Set1_Sel1" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div><div id="BaseCanvas_Set1_Sel2" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="min" data-from="" data-to="" style="left: 36px; top: 78px;">	<div class="ComponentHead">	<span><img src="./img/img_Sel.jpg"></span>	<span><input id="name_BaseCanvas_Set1_Sel2" type="text"></span>	<span><img id="del_BaseCanvas_Set1_Sel2" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div><div id="BaseCanvas_Set1_Sel3" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="repeat" data-from="" data-to="" style="left: 35px; top: 113px;">	<div class="ComponentHead">	<span><img src="./img/img_Sel.jpg"></span>	<span><input id="name_BaseCanvas_Set1_Sel3" type="text"></span>	<span><img id="del_BaseCanvas_Set1_Sel3" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div><div id="BaseCanvas_Set1_Tgl2" class="Component Presentation ui-resizable ui-draggable ui-draggable-handle _jsPlumb_endpoint_anchor_ ui-droppable" name="onoff" data-from="" data-to="" style="left: 33px; top: 149px;">	<div class="ComponentHead">	<span><img src="./img/img_Tgl.jpg"></span>	<span><input id="name_BaseCanvas_Set1_Tgl2" type="text"></span>	<span><img id="del_BaseCanvas_Set1_Tgl2" src="./img/remove.jpg"></span>	</div><div class="ui-resizable-handle ui-resizable-e" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-s" style="z-index: 90;"></div><div class="ui-resizable-handle ui-resizable-se ui-icon ui-icon-gripsmall-diagonal-se" style="z-index: 90;"></div></div></div><div class="_jsPlumb_endpoint _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 626px; top: 257px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 660px; top: 198.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 662px; top: 236.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 661px; top: 271.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><div class="_jsPlumb_endpoint  _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable" style="position: absolute; height: 12px; width: 12px; left: 660px; top: 307.5px;"><svg style="position:absolute;left:0px;top:0px" width="12" height="12" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><rect width="12" height="12" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#5c96bc" stroke="none" style="" stroke-width="2"></rect></svg></div><svg style="position:absolute;left:391px;top:250px" width="244" height="22.33399445920017" pointer-events="none" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml" class="_jsPlumb_connector"><path d="M 238 4 C 88 -6 150 10 0 0 " transform="translate(3,9)" pointer-events="visibleStroke" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="none" stroke="#5c96bc" style="" stroke-width="2"></path><path pointer-events="all" version="1.1" xmlns="http://www.w3.org/1999/xhtml" d="M238,4 L228.66600554079983,-6.624337505728084 L231.78297959292485,3.598058141006556 L227.3756624942719,13.333994459200172 L238,4" class="" stroke="#5c96bc" fill="#5c96bc" transform="translate(3,9)"></path></svg><div class="_jsPlumb_endpoint _jsPlumb_endpoint_anchor_ ui-draggable ui-draggable-handle ui-droppable _jsPlumb_endpoint_connected _jsPlumb_endpoint_full" style="position: absolute; height: 4px; width: 4px; left: 630px; top: 261px;"><svg style="position:absolute;left:0px;top:0px" width="4" height="4" pointer-events="all" position="absolute" version="1.1" xmlns="http://www.w3.org/1999/xhtml"><circle cx="2" cy="2" r="2" version="1.1" xmlns="http://www.w3.org/1999/xhtml" fill="#456" stroke="none" style=""></circle></svg></div>');
+				base.find("_jsPlumb_endpoint").each(function(index,element){$(element).remove();});
+				base.find("input").each(function(index,element){
+					var I = $(element),
+						id = I.attr('id').split('_');
+					if(id[0] == 'evtType'){
+						console.log('id: '+I.attr('id')+' name: '+I.attr('name'));
+						me.evtName.push({id:I.attr('id'),name:I.attr('name')});	
+						I.remove();
+					}
+				});
+				base.find("svg").each(function(index,element){
+					$(element).remove();
+				});
+				$('.ui-resizable').resizable().resizable('destroy');
+				model.counts= [ 0,0,0,0,0,0,0,0,0,0];
+				model.lums =[];
+				base.find(".Component").each(function(index,element){
+					var id = $(element).attr('id'),
+						id_split = id.split('_'),
+						id_split_len = id_split.length;
+					model.counts[model.types.indexOf(id_split[id_split_len-1].substring(0,3))]+=1;
+					
+					model.eventBinding($(element).attr('id'),
+								false,false, $(element).attr('data-to') );		
+					model.lums.push({id:id, name:$(element).attr('name')});
+					$("#name_"+id).val($(element).attr('name'));
+				});	
+				for( var i in me.evtName){
+					console.log( me.evtName[i] );
+					$("#"+me.evtName[i].id).val( me.evtName[i].name);
+				}
+				me.evtName = []; 
+			}
+
 		</script>
 		<div class='home-head-menu'>
 			<ul>
 				<li> 
-					<a href="http://localhost/index.html">Web Tool</a>
+					<a href="http://220.67.124.12">Web Tool</a>
 				</li>
 				<li>
 					<a href="#">Reference Model</a>
 					<ul>
-						<li>
-							<a href="#">Alarm</a>
+						<li onclick="alarm()">
+							<a>Alarm</a>
 						</li>
 						<li>
 							<a href="#">TBD</a>
@@ -150,8 +168,8 @@ $(function(){
 				<li>
 					<a href="#">Reference Implementation</a>
 					<ul>
-						<li>
-							<a href="#">Alarm</a>
+						<li >
+							<a href="./Alarm/index.html">Alarm</a>
 						</li>
 						<li>
 							<a href="#">TBD</a>
@@ -213,7 +231,9 @@ $(function(){
 				$(this).css('background-color','#FFFFFF');
 				console.log( e.originalEvent.type );
 				if( e.originalEvent.type != 'mouseup'){
+					console.log(e.originalEvent.dataTransfer.files[0]);
 					fmanager.FileLoad(e.originalEvent.dataTransfer.files);
+					console.log(e.originalEvent.dataTransfer.files[0]);
 				}
 			});
 		</script>
@@ -224,7 +244,7 @@ $(function(){
 			<input class='Name' disabled />
 		</div>
 		<div>
-			<font face="verdana">Values</font>
+			<font face="verdana"></font>
 			<textarea class="Values"></textarea>
 		</div>
 		<div>
@@ -243,10 +263,10 @@ $(function(){
 			-->
 			<input type="checkbox"  id="MulCheck" >
 			<script>
-				$("#MulCheck").change(function(e){
+				$("#MulCheck").change(function(e){//replace .MulCheck->#MulCheck  by kkrul 2017.08.09
 					console.log((e.target.checked ==true) ? 1:0 );
 					//pim.update(id_in_progress,'MulCheck', ((e.target.checked ==true) ? '1':'0') ); // ksaehwa replaced 2017-07-21
-					pim.update(id_in_progress,'MulCheck', e.target.checked); // ksaehwa replaced with 2017-07-21 
+					pim.update(id_in_progress,'MulCheck', ((e.target.checked ==true) ? 'True':'')); // ksaehwa replaced with 2017-07-21
 				});	
 			</script>
 		</div>
@@ -278,5 +298,4 @@ $(function(){
 	<div id='notice' title=' Notice '>
 		This Page is being modified..
 	</div>  -->
-</body>
-</html>
+</body></html>
